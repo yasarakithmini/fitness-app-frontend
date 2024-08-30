@@ -1,0 +1,36 @@
+.schedule-meetings {
+    padding: 20px;
+    margin-left: 300px;
+
+
+}
+
+.trainers-list {
+    margin-top: 60px;
+}
+
+.trainer-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 250px;
+    padding: 50px;
+    border: 1px solid #ddd;
+    width:250px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.trainer-item button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.trainer-item button:hover {
+    background-color: #0056b3;
+}

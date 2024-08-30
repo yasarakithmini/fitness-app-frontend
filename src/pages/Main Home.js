@@ -2,31 +2,28 @@ import React from "react";
 //import BannerImage from "../Assets/home-banner-image.png";
 import { useNavigate } from "react-router-dom";
 import '../style.css'
-import Navbar from "./Navbar";
+// import Navbar from "./Navbar";
 
 const Home = () => {
   const Navigate = useNavigate();
   
   return (
     <>
-      < Navbar />
+
     
     <div className="home-container">
       <div className="home-banner-container">
         <div className="home-text-section">
           <h1 className="primary-heading">Do you Know?</h1>
           <p className="primary-text">
-            Social anxiety is an intense fear of social situations due to the
-            fear of being judged or rejected. It can cause discomfort, avoidance
-            of social interactions, and symptoms such as sweating and panic.
-            Effective treatments are available. Let's experiment about your
-            situation.
+            Inconsistent Workout Routine can be a major barrier to achieving your fitness goals. It often stems from a lack of motivation, busy schedules, or not knowing where to start. This inconsistency can lead to feelings of frustration, low self-esteem, and stagnation in progress. Personalized workout plans and regular online meetings with a personal trainer can provide the guidance and accountability needed to stay on track.
+            Let’s assess your current routine and find the right solution for you.
           </p>
           <button
             className="secondary-button-1"
-            onClick={() => Navigate("/signin")}
+            onClick={() => Navigate("/login")}
           >
-            Start{" "}
+            Get Started{" "}
           </button>
         </div>
         <div className="home-image-section">

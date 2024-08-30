@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: rgba(103, 103, 96, 0.394);
+    background: linear-gradient(to right, rgba(7, 47, 124, 0.82), #100763, #072F7C); /* Add gradient background with three colors */
     margin: 0;
 }
 
@@ -11,120 +11,6 @@ body {
     background-color: white;
 }
 
-.nav-1 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: #c8eee8;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-}
-.logo{
-    margin: 0px;
-    font-size: 30px;
-    font-weight: bold;
-    color: rgb(10, 53, 56);
-}
-.logo span{
-    color: #16a099;
-}
-.site-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #333;
-}
-
-.navbar-toggle {
-    display: none;
-    font-size: 2rem;
-    color: #333;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.navbar-menu {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 1;
-}
-
-.navbar-menu li {
-    margin: 8px 30px 8px 25px;
-}
-
-.navbar-menu li a {
-    color: #333;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: bold;
-    transition: all 0.2s ease-in-out;
-    position: relative;
-}
-
-.active a :before {
-    content: "";
-    display: block;
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #333;
-    transition: all 0.2s ease-in-out;
-}
-
-.nav-1 a:hover:before {
-    width: 100%;
-}
-
-.nav-1 a:hover {
-    color: #0d9efe;
-}
-
-.nav-1 li.active a:before {
-    width: 100%;
-}
-
-.nav-1 li.active a {
-    color: #0d9efe;
-}
-
-.navbar-button-1{
-    background-color: #2dc3c9;
-    color: #FFFFFF;
-    font-size: 10px;
-    border: none;
-    margin-left: 10px;
-    border-radius: 30px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-.navbar-button-1:hover {
-    background-color: #0b5f6ec2;
-    color: #000000;
-}
-.navbar-button-2{
-    color: #333;
-    border: 2px solid #333;
-    font-size: 10px;
-    margin-left: 10px;
-    border: none;
-    border-radius: 30px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-.navbar-button-2:hover {
-    background-color: #0b5f6ec2;
-    color: #000000;
-}
 
 @media (max-width: 768px) {
     .nav-1 {
@@ -183,27 +69,32 @@ body {
 }
 
 .primary-heading {
-    font-size: 48px;
-    font-weight: bold;
+    font-size: 30px;
+    font-weight: bolder;
     margin-bottom: 20px;
     margin-right: 10%;
+    color: #FFFFFF;
 }
 
 .primary-text {
-    font-size: 24px;
+    font-size: 20px;
+    margin-top: 10px;
     margin-bottom: 20px;
+    color: #FFFFFF;
+
 }
 
 .secondary-button-1 {
-    background-color: #2dc3c9;
-    color: #FFFFFF;
-    font-size: 20px;
-    border: none;
+    background-color: #93ACED;
+    color: #000000;
+    font-size: 15px;
     border-radius: 30px;
-    padding: 20px 40px;
+    padding: 10px 20px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    margin-left: 40%;
+    margin-left: 45%;
+    border-color:#FFFFFF;
+
 }
 
 .secondary-button-1:hover {
@@ -409,4 +300,8 @@ body {
 .numb {
     margin-top: 10px;
     margin-left: 65px;
+}
+.logo-image {
+    width: 60px;
+    height: auto;
 }

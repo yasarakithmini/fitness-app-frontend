@@ -1,0 +1,106 @@
+.nav-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px 05px 0px;
+    background-color: rgba(255, 255, 255, 0.91);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.site-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.navbar-toggle {
+    display: none;
+    font-size: 2rem;
+    color: #333;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 1;
+}
+
+.navbar-menu li {
+    margin: 8px 30px 8px 25px;
+}
+
+.navbar-menu li a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+}
+
+.active a :before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #333;
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-1 a:hover:before {
+    width: 100%;
+}
+
+.nav-1 a:hover {
+    color: #0d9efe;
+}
+
+.nav-1 li.active a:before {
+    width: 100%;
+}
+
+.nav-1 li.active a {
+    color: #0d9efe;
+}
+
+.navbar-button-1{
+
+    color: #000000;
+    font-size: 15px;
+    margin-left: 10px;
+    border-radius: 20px;
+    border-color: #0b0d0d;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.navbar-button-1:hover {
+    background-color: #0b5f6ec2;
+    color: #000000;
+}
+.navbar-button-2{
+    color: #333;
+    border: 2px solid #333;
+    font-size: 10px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.navbar-button-2:hover {
+    background-color: #0b5f6ec2;
+    color: #000000;
+}
