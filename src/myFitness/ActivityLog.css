@@ -1,0 +1,111 @@
+/* Main Container */
+.bmi-container {
+    max-width: 500px;
+    margin: 80px auto; /* Adjust top margin to avoid navbar overlap */
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333; /* Consistent dark text color */
+}
+
+/* Form Styles */
+.bmi-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Labels */
+label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: block;
+    color: #000; /* Black color for labels */
+}
+
+/* Inputs and Select */
+input,
+select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #000; /* Black text color */
+    background-color: #fff; /* Ensure inputs are white */
+}
+
+/* Read-only Input */
+input[readonly] {
+    background-color: #e9e9e9;
+    color: #555; /* Slightly lighter text for read-only fields */
+}
+
+/* Submit Button */
+.submit-btn {
+    padding: 10px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: rgba(65, 61, 61, 0.2);
+}
+
+/* Comparison Section */
+.comparison-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Compare Button */
+.compare-btn {
+    padding: 10px 20px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.compare-btn:hover {
+    background-color: rgba(65, 61, 61, 0.2);
+}
+
+/* Comparison Result Box */
+.comparison-result {
+    margin-top: 15px;
+    background: #e2e2e2;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* Message */
+.message {
+    text-align: center;
+    color: #000000; /* Green color for success message */
+    margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .bmi-container {
+        padding: 15px;
+    }
+}

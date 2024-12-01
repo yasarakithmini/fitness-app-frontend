@@ -13,6 +13,7 @@
     background-color: rgba(217, 217, 217, 0.2); /* White background for the form box */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow for the box */
     border-radius: 8px; /* Rounded corners */
+    margin-top:200px;
 }
 
 .signup-box h2 {
@@ -36,6 +37,14 @@
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+.signup-box select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 
 .signup-box button {
     width: 100px;

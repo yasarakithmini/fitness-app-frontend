@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ScheduleMeetings.css'; // Optional: Create this CSS file for styling
-import Sidebar from './Sidebar';
-
+import TrainerCalendar from './TrainerCalendar';
 
 function ScheduleMeetings() {
     const [trainers, setTrainers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [selectedTrainer, setSelectedTrainer] = useState(null);
+    const userId = localStorage.getItem('id');
 
     useEffect(() => {
-        // Fetch the list of trainers from the backend when the component mounts
         const fetchTrainers = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/api/trainers');
@@ -26,30 +26,57 @@ function ScheduleMeetings() {
         fetchTrainers();
     }, []);
 
+    const handleSelectSlot = async (trainerId, dateTime) => {
+        try {
+            // Retrieve the user ID from local storage
+            const userId = localStorage.getItem('id');
+            // Create the data object
+            const data = {
+                date_time: dateTime.toISOString(),
+                trainer_id: trainerId,
+                user_id: userId,
+            };
+
+            // Log the data to the console
+            console.log("Data being sent to the backend:", data);
+
+            // Send the POST request
+            const response = await axios.post('http://localhost:5000/api/schedule-meeting', data);
+            console.log('Backend Response:', response.data);
+
+            alert('Meeting request sent!');
+        } catch (error) {
+            console.error('There was an error scheduling the meeting!', error);
+            alert('Error sending meeting request.');
+        }
+    };
+
+    const toggleCalendar = (trainerId) => {
+        // Toggle the selected trainer's calendar visibility
+        setSelectedTrainer((prevTrainer) => (prevTrainer === trainerId ? null : trainerId));
+    };
+
     if (loading) return <div>Loading trainers...</div>;
     if (error) return <div>{error}</div>;
 
     return (
         <div className="schedule-meetings">
-            <Sidebar />
             <h2>Schedule Meetings with Trainers</h2>
-
             <div className="trainers-list">
                 {trainers.map(trainer => (
                     <div key={trainer.id} className="trainer-item">
                         <span>{trainer.name}</span>
-                        <button onClick={() => handleScheduleMeeting(trainer.id)}>Schedule a Meeting</button>
+                        <button onClick={() => toggleCalendar(trainer.id)}>
+                            {selectedTrainer === trainer.id ? 'Hide Calendar' : 'View Calendar'}
+                        </button>
+                        {selectedTrainer === trainer.id && (
+                            <TrainerCalendar trainerId={trainer.id} onSelectSlot={handleSelectSlot} />
+                        )}
                     </div>
                 ))}
             </div>
         </div>
     );
 }
-
-// Function to handle the scheduling of a meeting (implement as needed)
-const handleScheduleMeeting = (trainerId) => {
-    console.log(`Schedule a meeting with trainer ID: ${trainerId}`);
-    // Implement the logic for scheduling a meeting (e.g., open a modal, redirect to another page, etc.)
-};
 
 export default ScheduleMeetings;

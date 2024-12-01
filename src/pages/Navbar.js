@@ -1,17 +1,22 @@
 import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from '../components/AuthContext'; // Adjust path as necessary
 import logo from '../images/fixfit_logo.png';
 import './Navbar.css';
 
-
-
 export default function Navbar() {
+  const { isLoggedIn, logout } = useAuth();
   const Navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleMenu() {
     setIsOpen(!isOpen);
   }
+
+  const handleLogout = () => {
+    logout();
+    Navigate('/login');
+  };
 
   return (
       <div className="navbar-wrapper">
@@ -29,12 +34,21 @@ export default function Navbar() {
             <CustomLink to="/">Home</CustomLink>
             <CustomLink to="/services">Services</CustomLink>
             <CustomLink to="/about">About</CustomLink>
-            <button
-                className="navbar-button-1"
-                onClick={() => Navigate("/login")}
-            >
-              Login
-            </button>
+            {!isLoggedIn ? (
+                <button
+                    className="navbar-button-1"
+                    onClick={() => Navigate("/login")}
+                >
+                  Login
+                </button>
+            ) : (
+                <button
+                    className="navbar-button-1"
+                    onClick={handleLogout}
+                >
+                  Logout
+                </button>
+            )}
           </ul>
         </nav>
       </div>

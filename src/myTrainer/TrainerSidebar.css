@@ -1,23 +1,21 @@
 /* src/Sidebar.css */
 .sidebar {
-    width: 250px;
-    height: calc(100vh - 60px); /* Adjust for navbar height */
-    background-color: rgba(245, 245, 245, 0.91);
-    color: #000000;
-    position: fixed;
-    top: 80px; /* Start below the navbar */
+    width: 250px; /* Adjust the width as needed */
+    height: calc(100vh - 60px); /* Adjust the height to account for the navbar height */
+    background-color: rgba(245, 245, 245, 0.91); /* Background color of the sidebar */
+    color: #000000; /* Text color */
+    position: fixed; /* Fixed position on the left side */
+    top: 60px; /* Start 60px from the top to avoid overlapping the navbar */
     left: 0;
     display: flex;
     flex-direction: column;
     padding: 20px;
-    z-index: 1000; /* Lower than navbar */
-    text-decoration: none;
+    z-index: 1000; /* Ensure the sidebar is behind the navbar if it overlaps */
 }
 
 .sidebar ul {
     list-style-type: none; /* Remove default list styling */
     padding: 10px;
-
 }
 
 .sidebar li {
@@ -29,15 +27,13 @@
     background-color: rgba(245, 245, 245, 0.91);
     padding: 10px;
     border-radius: 15px;
-
 }
 
 .sidebar li:hover {
     background-color: #D2D2D2; /* Highlight color on hover */
     padding: 10px;
     border-radius: 15px;
-    text-decoration: none;
-
+    border-left-color: rgba(67, 54, 184, 0.83);
 }
 .sidebar a {
     text-decoration: none; /* Remove underline */

@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
 import Navbar from "../pages/Navbar";
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../components/AuthContext'; // Adjust path as necessary
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
-    const navigate = useNavigate(); // Get navigate function
+    const navigate = useNavigate();
+    const { login } = useAuth(); // Access login function from context
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -20,8 +20,19 @@ const Login = () => {
         try {
             const response = await axios.post('http://localhost:5000/login', user);
             setMessage(response.data.message);
+
             if (response.data.message === 'User logged in successfully!') {
-                navigate('/dashboard');
+                const userType = response.data.user_type;
+                const userId = response.data.id;
+
+                // Use login function from context
+                login(userId);
+
+                if (userType === 'Trainer') {
+                    navigate('/trainer-dashboard');
+                } else if (userType === 'User') {
+                    navigate('/dashboard');
+                }
             }
         } catch (error) {
             if (error.response && error.response.data) {
