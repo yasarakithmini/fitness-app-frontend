@@ -16,7 +16,7 @@ import TrainerDashboard from "./myTrainer/TrainerDash";
 import Sidebar from "./myFitness/Sidebar";
 import ProtectedRoute from './components/ProtectedRoute'; // Import ProtectedRoute
 import { AuthProvider } from './components/AuthContext';
-import ActivityLog from "./myFitness/ActivityLog";
+import ActivityLog from "./myFitness/FitnessMetrics";
 
 function App() {
     const location = useLocation();
@@ -30,7 +30,7 @@ function App() {
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/services" element={<Services />} />
-                <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+                <Route path="/dashboard/*" element={<ProtectedRoute element={<Dashboard />} />} />
                 <Route path="/workout_plans" element={<ProtectedRoute element={<WorkoutPlans />} />} />
                 <Route path="/schedule-meetings" element={<ProtectedRoute element={<ScheduleMeetings />} />} />
                 <Route path="/activity-log" element={<ProtectedRoute element={<ActivityLog />} />} />

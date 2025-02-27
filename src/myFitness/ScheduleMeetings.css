@@ -1,12 +1,14 @@
-/* ScheduleMeetings.css */
-/*.schedule-meetings {*/
-/*    padding: 30px;*/
-/*    margin-left: 300px;*/
-/*    background-color: #f0f4f8;*/
-/*    border-radius: 8px;*/
-/*    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);*/
-/*}*/
+/* Main container for the meetings section */
+.schedule-meetings {
+    padding: 30px;
+    margin-top: 100px;
+    margin-left: 250px;
+    background-color: rgba(240, 244, 248, 0.16);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
+/* Trainers list container */
 .trainers-list {
     margin-top: 60px;
     display: flex;
@@ -15,19 +17,21 @@
     justify-content: center;
 }
 
+/* Individual trainer container */
 .trainer-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-bottom: 20px;
     padding: 30px;
     border: 1px solid #ddd;
     width: 300px;
+    height: 220px; /* Fixed height to prevent shifting */
     border-radius: 12px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Needed for proper calendar placement */
 }
 
 .trainer-item:hover {
@@ -42,8 +46,8 @@
     margin-bottom: 15px;
 }
 
+/* Button styling */
 .trainer-item button {
-    width: px;
     background-color: rgb(0, 0, 0);
     color: white;
     border: none;
@@ -52,11 +56,11 @@
     border-radius: 6px;
     font-size: 14px;
     transition: background-color 0.3s ease;
-    margin-top: 15px;
+    margin-top: auto; /* Push button to the bottom */
 }
 
 .trainer-item button:hover {
-    background-color: rgba(67, 54, 184, 0.83);
+    background-color: rgba(93, 93, 98, 0.83);
 }
 
 .trainer-item button:focus {
@@ -66,15 +70,20 @@
 
 /* Calendar Styling */
 .trainer-calendar {
-    margin-top: 20px;
+    margin-top: 10px;
     background-color: #e9ecef;
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     width: 100%;
-    max-width: 500px;
+    max-width: 280px;
     text-align: left;
-    animation: fadeIn 0.5s ease-in-out;
+    animation: fadeIn 0.3s ease-in-out;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
 }
 
 /* Fade-in animation for calendar */
@@ -89,7 +98,7 @@
     }
 }
 
-/* Style for loading and error messages */
+/* Loading & Error Message Styles */
 .loading,
 .error {
     font-size: 18px;
@@ -97,7 +106,7 @@
     margin-top: 50px;
 }
 
-/* Media queries for responsiveness */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
     .schedule-meetings {
         margin-left: 0;
@@ -111,6 +120,6 @@
 
     .trainer-item {
         width: 90%;
-        margin-left: 0;
+        height: auto; /* Adjusts height for mobile */
     }
 }

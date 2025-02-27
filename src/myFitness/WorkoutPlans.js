@@ -1,85 +1,107 @@
-// src/WorkoutPlans.js
-import React, { useState } from 'react';
-import './WorkoutPlans.css'; // Optional: Create this CSS file for styling
-import './Sidebar';
+import React, { useState } from "react";
+import axios from "axios";
+import "./WorkoutPlans.css"; // Optional styling file
 import Sidebar from "./Sidebar";
 
 function WorkoutPlans() {
     const questions = [
         {
-            id: 1,
-            question: "What is your primary fitness goal?",
-            options: ["Lose Weight", "Build Muscle", "Increase Endurance", "Improve Flexibility"]
-        },
-        {
-            id: 2,
+            id: "BodyPart",
             question: "Which body part do you want to focus on?",
-            options: ["Chest", "Arms", "Legs", "Back", "Abs", "Shoulders", "Waist"]
+            options: ["Abductors", "Biceps", "Chest", "Forearms", "Abdominals", "Glutes", "Hamstrings", "Lats", "Lower Back","Middle Back","Traps","Neck","Quadriceps","Shoulders","Triceps"],
         },
         {
-            id: 3,
-            question: "What type of equipment do you prefer to use?",
-            options: ["Body weight", "Dumbbell", "Barbell", "Resistance Band", "Machine", "Kettlebell", "None"]
+            id: "Type",
+            question: "What type of workout are you interested in?",
+            options: ["Strength", "Cardio", "Stretching", "Plyometrics", "Powerlifting", "Strongman", "Olympic Weightlifting"],
         },
         {
-            id: 4,
+            id: "Level",
             question: "How would you describe your current fitness level?",
-            options: ["Beginner", "Intermediate", "Advanced"]
+            options: ["Beginner", "Intermediate", "Expert"],
         },
         {
-            id: 5,
-            question: "What kind of workout duration or intensity do you prefer?",
-            options: ["Short (15-30 mins)", "Moderate (30-45 mins)", "Long (45+ mins)", "High Intensity"]
-        }
+            id: "Equipment",
+            question: "What type of equipment do you prefer?",
+            options: ["Body Only", "Dumbbell", "Barbell","E-Z Curl Bar", "Bands", "Exercise Ball", "Cable", "Machine", "Kettlebells", "Foam Roll", "Medicine Ball", "None", "Other"],
+        },
     ];
 
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState({});
+    const [recommendedExercises, setRecommendedExercises] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleOptionChange = (questionId, option) => {
         setSelectedAnswers({
             ...selectedAnswers,
-            [questionId]: option
+            [questionId]: option,
         });
     };
 
-    const handleNextClick = () => {
+    const handleNextClick = async () => {
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
-            alert("You have completed the questionnaire!");
-            // Optionally, you can handle the submission of answers here
-            console.log("Selected Answers:", selectedAnswers);
-            // Submit selectedAnswers to the backend for workout plan recommendation
+            try {
+                setLoading(true);
+                console.log("Sending request to backend with:", selectedAnswers);
+
+                const response = await axios.post("http://localhost:5000/recommendations", selectedAnswers);
+
+                console.log("Received response:", response.data);
+                setRecommendedExercises(response.data.exercises);
+            } catch (error) {
+                console.error("Error fetching workout plan:", error);
+                alert("An error occurred while fetching your workout plan.");
+            } finally {
+                setLoading(false);
+            }
         }
     };
+
 
     return (
         <div className="workout-plans">
             <Sidebar />
-            <h2>Workout Plans Questionnaire</h2>
-            <div className="question-container">
-                <h3>{questions[currentQuestionIndex].question}</h3>
-                <ul>
-                    {questions[currentQuestionIndex].options.map(option => (
-                        <li key={option}>
-                            <label>
-                                <input
-                                    type="radio"
-                                    name={`question-${questions[currentQuestionIndex].id}`}
-                                    value={option}
-                                    checked={selectedAnswers[questions[currentQuestionIndex].id] === option}
-                                    onChange={() => handleOptionChange(questions[currentQuestionIndex].id, option)}
-                                />
-                                {option}
-                            </label>
-                        </li>
-                    ))}
-                </ul>
-                <button onClick={handleNextClick}>
-                    {currentQuestionIndex < questions.length - 1 ? "Next" : "Submit"}
-                </button>
-            </div>
+            {!recommendedExercises && <h2>Workout Plans Questionnaire</h2>}
+            {loading ? (
+                <p>Loading your personalized workout plan...</p>
+            ) : recommendedExercises ? (
+                <div>
+                    <h3>Your Personalized Workout Plan:</h3>
+                    <ul>
+                        {recommendedExercises.map((exercise, index) => (
+                            <li key={index}>
+                                <strong>{exercise}</strong>  {/* Directly render exercise name */}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            ) : (
+                <div className="question-container">
+                    <h3>{questions[currentQuestionIndex].question}</h3>
+                    <ul>
+                        {questions[currentQuestionIndex].options.map((option) => (
+                            <li key={option}>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name={`question-${questions[currentQuestionIndex].id}`}
+                                        value={option}
+                                        checked={selectedAnswers[questions[currentQuestionIndex].id] === option}
+                                        onChange={() => handleOptionChange(questions[currentQuestionIndex].id, option)}
+                                    />
+                                    {option}
+                                </label>
+                            </li>
+                        ))}
+                    </ul>
+                    <button onClick={handleNextClick}>
+                        {currentQuestionIndex < questions.length - 1 ? "Next" : "Submit"}
+                    </button>
+                </div>
+            )}
         </div>
     );
 }

@@ -20,8 +20,8 @@ const About = () => {
         <h3 className="section-title">What We Offer</h3>
         <p className="description">
 
-          <li>Customized Workouts: Plans tailored to your goals and fitness level.</li>
-          <li>Virtual Coaching: Online sessions with experienced trainers.</li>
+          <li>Customized Workouts: Plans tailored to your preferences and fitness level.</li>
+          <li>Booking Consultations: Scheduling online sessions with experienced trainers.</li>
           <li>Progress Tracking: Easily monitor your achievements and milestones.</li>
         </p>
         <h3 className="section-title">Join Us</h3>

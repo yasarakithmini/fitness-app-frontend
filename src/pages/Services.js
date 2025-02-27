@@ -3,6 +3,7 @@ import WorkoutPlans from "../images/personalized_workout_plans.jpg";
 import Meetings from "../images/schedule_meetings.jpg";
 import Progress from "../images/progress_tracking.jpg";
 import Support from "../images/support.jpg";
+import './Services.css';
 
 // import DeliveryMeals from "../Assets/delivery-image.png";
 // import Navbar from "./Navbar";
@@ -39,7 +40,7 @@ const Work = () => {
         <h1 className="primary-heading-1">Services</h1>
         <p className="primary-text">
           We are here to help you. You can get below services from us. We are
-          always happy to help you.
+          always happy to help you!
         </p>
       </div>
       <div className="work-section-bottom">

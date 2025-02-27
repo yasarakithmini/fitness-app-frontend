@@ -4,6 +4,7 @@
     align-items: center;
     height: 100vh; /* Full height of the viewport */
     background-color:linear-gradient(to right, rgba(7, 47, 124, 0.82), #100763, #072F7C);
+
 }
 
 .signup-box {
@@ -14,6 +15,8 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow for the box */
     border-radius: 8px; /* Rounded corners */
     margin-top:200px;
+    min-height: calc(100vh - 100px); /* Adjust based on footer height */
+    padding-bottom: 100px;
 }
 
 .signup-box h2 {
