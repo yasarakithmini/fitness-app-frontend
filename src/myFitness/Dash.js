@@ -68,24 +68,45 @@ function Dash() {
                         <h3>Recent Fitness Records</h3>
                         <div className="record">
                             <h4>Most Recent Record</h4>
-                            <p><strong>BMI:</strong> {fitnessData.record_1?.bmi || 'N/A'}</p>
-                            <p><strong>Waist-to-Hip Ratio:</strong> {fitnessData.record_1?.whr || 'N/A'}</p>
-                            <p><strong>Date:</strong> {fitnessData.record_1?.record_date || 'N/A'}</p>
+                            <p><strong>BMI:</strong> {fitnessData[0]?.bmi || 'N/A'}</p>
+                            <p><strong>Waist-to-Hip Ratio:</strong> {fitnessData[0]?.whr || 'N/A'}</p>
+                            <p><strong>Date:</strong> {fitnessData[0]?.record_date || 'N/A'}</p>
                         </div>
                         <div className="record">
                             <h4>Previous Record</h4>
-                            <p><strong>BMI:</strong> {fitnessData.record_2?.bmi || 'N/A'}</p>
-                            <p><strong>Waist-to-Hip Ratio:</strong> {fitnessData.record_2?.whr || 'N/A'}</p>
-                            <p><strong>Date:</strong> {fitnessData.record_2?.record_date || 'N/A'}</p>
+                            <p><strong>BMI:</strong> {fitnessData[1]?.bmi || 'N/A'}</p>
+                            <p><strong>Waist-to-Hip Ratio:</strong> {fitnessData[1]?.whr || 'N/A'}</p>
+                            <p><strong>Date:</strong> {fitnessData[1]?.record_date || 'N/A'}</p>
                         </div>
                         <div className="fitness-chart">
                             <h3>Comparison of Recent Fitness Records</h3>
-                            <Line data={chartData} />
+                            <Line
+                                data={{
+                                    labels: ['Previous Record', 'Most Recent Record'],
+                                    datasets: [
+                                        {
+                                            label: 'BMI Comparison',
+                                            data: [fitnessData[1]?.bmi || 0, fitnessData[0]?.bmi || 0],
+                                            borderColor: 'rgba(75,192,192,1)',
+                                            backgroundColor: 'rgba(75,192,192,0.2)',
+                                            fill: true,
+                                        },
+                                        {
+                                            label: 'Waist-to-Hip Ratio Comparison',
+                                            data: [fitnessData[1]?.whr || 0, fitnessData[0]?.whr || 0],
+                                            borderColor: 'rgba(153,102,255,1)',
+                                            backgroundColor: 'rgba(153,102,255,0.2)',
+                                            fill: true,
+                                        },
+                                    ],
+                                }}
+                            />
                         </div>
                     </div>
                 ) : (
                     <p>Loading fitness data...</p>
                 )}
+
             </div>
         </div>
     );

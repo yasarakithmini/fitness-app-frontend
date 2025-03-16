@@ -6,7 +6,7 @@
     margin-top: 100px;
 
     padding: 20px;
-    background-color: rgba(217, 217, 217, 0.46);
+    background-color: rgba(217, 217, 217, 0.73);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -54,7 +54,7 @@ ul li input[type="radio"] {
     display: block;
     width: 80px;
     padding: 10px;
-    background-color: gray; /* Changed to gray */
+    background-color: #525151; /* Changed to gray */
     color: rgb(255, 255, 255); /* Change text color to white for better contrast */
     border: none;
     border-radius: 4px;
