@@ -51,3 +51,9 @@
     color: #0d9efe;
     text-decoration: none;
 }
+.sidebar li.active {
+    color: #0d9efe; /* Highlight active tab */
+    background-color: #D2D2D2;
+
+
+}

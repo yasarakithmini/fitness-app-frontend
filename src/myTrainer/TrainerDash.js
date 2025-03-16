@@ -13,7 +13,7 @@ function TrainerDash() {
         // Fetch meeting requests for the trainer
         axios.get(`http://localhost:5000/api/meeting-requests/${trainerId}`)
             .then(response => {
-                setMeetings(response.data.data);
+                setMeetings(response.data.data || []);
                 setLoading(false);
             })
             .catch(error => {
