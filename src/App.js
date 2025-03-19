@@ -11,7 +11,7 @@ import Dashboard from './myFitness/Dash';
 import ScheduleMeetings from './myFitness/ScheduleMeetings';
 import WorkoutPlans from './myFitness/WorkoutPlans';
 import ContactUs from "./myFitness/ContactUs";
-import Settings from "./components/Settings";
+import Settings from "./myFitness/Settings";
 import TrainerDashboard from "./myTrainer/TrainerDash";
 import MeetingRequests from "./myTrainer/MeetingRequests"
 import Sidebar from "./myFitness/Sidebar";
@@ -39,6 +39,8 @@ function App() {
                 <Route path="/settings" element={<ProtectedRoute element={<Settings />} />} />
                 <Route path="/trainer-dashboard" element={<ProtectedRoute element={<TrainerDashboard />} />} />
                 <Route path="/meeting-requests" element={<ProtectedRoute element={<MeetingRequests />} />} />
+                <Route path="/profile" element={<ProtectedRoute element={<Settings />} />} />
+
 
             </Routes>
             {(location.pathname === "/" || location.pathname === "/about" || location.pathname === "/services" || location.pathname === "/signup" || location.pathname === "/login") && <Footer />}

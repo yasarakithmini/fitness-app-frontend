@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./WorkoutPlans.css"; // Optional styling file
 import Sidebar from "./Sidebar";
@@ -31,6 +31,23 @@ function WorkoutPlans() {
     const [selectedAnswers, setSelectedAnswers] = useState({});
     const [recommendedExercises, setRecommendedExercises] = useState(null);
     const [loading, setLoading] = useState(false);
+    const userId = localStorage.getItem('id');
+
+    useEffect(() => {
+        // Fetch latest workout plan for the user
+        const fetchPastPlan = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/workout/latest/${userId}`);
+                if (response.data && response.data.exercises) {
+                    setRecommendedExercises(response.data.exercises);
+                }
+            } catch (error) {
+                console.error("Error fetching past workout plan:", error);
+            }
+        };
+
+        fetchPastPlan();
+    }, [userId]);
 
     const handleOptionChange = (questionId, option) => {
         setSelectedAnswers({
@@ -45,9 +62,21 @@ function WorkoutPlans() {
         } else {
             try {
                 setLoading(true);
-                console.log("Sending request to backend with:", selectedAnswers);
 
-                const response = await axios.post("http://localhost:5000/recommendations", selectedAnswers);
+                // Fetch latest fitness record to get BMI & WHR
+                const fitnessResponse = await axios.get(`http://localhost:5000/fitness/latest/${userId}`);
+                const latestFitness = fitnessResponse.data[0] || {};  // Use latest record if exists
+
+                const requestData = {
+                    ...selectedAnswers,
+                    user_id: userId,
+                    bmi: latestFitness.bmi || null,
+                    whr: latestFitness.whr || null,
+                };
+
+                console.log("Sending request to backend with:", requestData);
+
+                const response = await axios.post("http://localhost:5000/recommendations", requestData);
 
                 console.log("Received response:", response.data);
                 setRecommendedExercises(response.data.exercises);
@@ -59,7 +88,6 @@ function WorkoutPlans() {
             }
         }
     };
-
 
     return (
         <div className="workout-plans">
@@ -73,10 +101,13 @@ function WorkoutPlans() {
                     <ul>
                         {recommendedExercises.map((exercise, index) => (
                             <li key={index}>
-                                <strong>{exercise}</strong>  {/* Directly render exercise name */}
+                                <strong>{exercise}</strong>  {/* Displaying exercise name */}
                             </li>
                         ))}
                     </ul>
+                    <button onClick={() => setRecommendedExercises(null)}>
+                        Generate New Plan
+                    </button>
                 </div>
             ) : (
                 <div className="question-container">

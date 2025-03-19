@@ -1,6 +1,7 @@
 import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from '../components/AuthContext'; // Adjust path as necessary
+import { useAuth } from '../components/AuthContext';
+import { FaUserCircle } from "react-icons/fa";
 import logo from '../images/fixfit_logo.png';
 import './Navbar.css';
 
@@ -8,14 +9,20 @@ export default function Navbar() {
   const { isLoggedIn, logout } = useAuth();
   const Navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  function toggleMenu() {
-    setIsOpen(!isOpen);
-  }
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
 
   const handleLogout = () => {
+    setIsDrawerOpen(false);
     logout();
     Navigate('/login');
+  };
+
+  const handleSettings = () => {
+    setIsDrawerOpen(false);
+    Navigate('/profile');
   };
 
   return (
@@ -34,23 +41,36 @@ export default function Navbar() {
             <CustomLink to="/">Home</CustomLink>
             <CustomLink to="/services">Services</CustomLink>
             <CustomLink to="/about">About</CustomLink>
-            {!isLoggedIn ? (
+
+            {isLoggedIn ? (
+                <>
+                  <button
+                      className="user-icon-btn"
+                      onClick={toggleDrawer}
+                  >
+                    <FaUserCircle size={28} />
+                  </button>
+                </>
+            ) : (
                 <button
                     className="navbar-button-1"
                     onClick={() => Navigate("/login")}
                 >
                   Login
                 </button>
-            ) : (
-                <button
-                    className="navbar-button-1"
-                    onClick={handleLogout}
-                >
-                  Logout
-                </button>
             )}
           </ul>
         </nav>
+
+        {/* Right-Side Drawer */}
+        {isDrawerOpen && (
+            <div className="profile-drawer" onClick={toggleDrawer}>
+              <div className="drawer-content" onClick={(e) => e.stopPropagation()}>
+                <button onClick={handleSettings} className="drawer-button">Settings</button>
+                <button onClick={handleLogout} className="drawer-button">Logout</button>
+              </div>
+            </div>
+        )}
       </div>
   );
 }
