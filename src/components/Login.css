@@ -8,10 +8,10 @@
 }
 
 .login-box {
-    width: 300px;
+    width: 400px;
     height: 350px;
     padding: 20px;
-    background-color: rgba(217, 217, 217, 0.2); /* White background for the form box */
+    background-color: rgba(217, 217, 217, 0.87); /* White background for the form box */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow for the box */
     border-radius: 8px; /* Rounded corners */
 

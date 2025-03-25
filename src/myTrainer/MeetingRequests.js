@@ -26,7 +26,7 @@ function MeetingRequests() {
             .then(response => {
                 // Refresh requests after action
                 setRequests(prev => prev.map(req =>
-                    req.id === meetingId ? { ...req, status: action === 'accept' ? 'accepted' : 'rejected' } : req
+                    req.id === meetingId ? { ...req, status: action === 'accept' ? 'Accepted' : 'Rejected' } : req
                 ));
             })
             .catch(error => {
@@ -49,7 +49,7 @@ function MeetingRequests() {
                                     <p><strong>Date:</strong> {new Date(req.date_time).toLocaleString()}</p>
                                     <p><strong>User ID:</strong> {req.user_id}</p>
                                     <p><strong>Status:</strong> {req.status}</p>
-                                    {req.status === 'pending' && (
+                                    {req.status === 'Pending' && (
                                         <div className="actions">
                                             <button className="accept" onClick={() => handleAction(req.id, 'accept')}>Accept</button>
                                             <button className="reject" onClick={() => handleAction(req.id, 'reject')}>Reject</button>

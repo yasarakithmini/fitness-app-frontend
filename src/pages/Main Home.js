@@ -14,10 +14,10 @@ const Home = () => {
     <div className="home-container">
       <div className="home-banner-container">
         <div className="home-text-section">
-          <h1 className="primary-heading">Do you Know?</h1>
+          <h1 className="primary-heading">Struggling to stick to a workout routine?</h1>
           <p className="primary-text">
-            Inconsistent Workout Routine can be a major barrier to achieving your fitness goals. It often stems from a lack of motivation, busy schedules, or not knowing where to start. This inconsistency can lead to feelings of frustration, low self-esteem, and stagnation in progress. Personalized workout plans and regular online meetings with a personal trainer can provide the guidance and accountability needed to stay on track.
-            Let’s assess your current routine and find the right solution for you.
+            You’re not alone. Busy schedules, low motivation, or just not knowing where to start can make it tough to stay consistent and that can be frustrating. But you don’t have to do it alone.
+            With personalized workout plans and regular check-ins with a personal trainer, staying on track becomes easier and more motivating.
           </p>
           <button
             className="secondary-button-1"

@@ -11,7 +11,7 @@ function TrainerDash() {
 
     useEffect(() => {
         // Fetch meeting requests for the trainer
-        axios.get(`http://localhost:5000/api/meeting-requests/${trainerId}`)
+        axios.get(`http://localhost:5000/api/accepted-meetings/${trainerId}`)
             .then(response => {
                 setMeetings(response.data.data || []);
                 setLoading(false);
