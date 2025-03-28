@@ -66,7 +66,7 @@ function ScheduleMeetings() {
                 {trainers.map(trainer => (
                     <div key={trainer.id} className="trainer-item">
                         <span>{trainer.name}</span>
-                        <span style={{ margin: '0 10px', fontSize: '1.8rem' }}>👤</span>
+                        <span style={{ margin: '0 10px', fontSize: '2.8rem' }}>👤</span>
                         <button onClick={() => toggleCalendar(trainer.id)}>
                             {selectedTrainer === trainer.id ? 'Hide Calendar' : 'View Calendar'}
                         </button>

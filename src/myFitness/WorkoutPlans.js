@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./WorkoutPlans.css"; // Optional styling file
+import "./WorkoutPlans.css";
 import Sidebar from "./Sidebar";
+import { FaArrowLeft } from "react-icons/fa"; // Back icon
 
 function WorkoutPlans() {
     const questions = [
         {
             id: "BodyPart",
             question: "Which body part do you want to focus on?",
-            options: ["Abductors", "Biceps", "Chest", "Forearms", "Abdominals", "Glutes", "Hamstrings", "Lats", "Lower Back","Middle Back","Traps","Neck","Quadriceps","Shoulders","Triceps"],
+            options: ["Abductors", "Biceps", "Chest", "Forearms", "Abdominals", "Glutes", "Hamstrings", "Lats", "Lower Back", "Middle Back", "Traps", "Neck", "Quadriceps", "Shoulders", "Triceps"],
         },
         {
             id: "Type",
@@ -23,7 +24,7 @@ function WorkoutPlans() {
         {
             id: "Equipment",
             question: "What type of equipment do you prefer?",
-            options: ["Body Only", "Dumbbell", "Barbell","E-Z Curl Bar", "Bands", "Exercise Ball", "Cable", "Machine", "Kettlebells", "Foam Roll", "Medicine Ball", "None", "Other"],
+            options: ["Body Only", "Dumbbell", "Barbell", "E-Z Curl Bar", "Bands", "Exercise Ball", "Cable", "Machine", "Kettlebells", "Foam Roll", "Medicine Ball", "None", "Other"],
         },
     ];
 
@@ -34,7 +35,6 @@ function WorkoutPlans() {
     const userId = localStorage.getItem('id');
 
     useEffect(() => {
-        // Fetch latest workout plan for the user
         const fetchPastPlan = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/workout/latest/${userId}`);
@@ -63,9 +63,8 @@ function WorkoutPlans() {
             try {
                 setLoading(true);
 
-                // Fetch latest fitness record to get BMI & WHR
                 const fitnessResponse = await axios.get(`http://localhost:5000/fitness/latest/${userId}`);
-                const latestFitness = fitnessResponse.data[0] || {};  // Use latest record if exists
+                const latestFitness = fitnessResponse.data[0] || {};
 
                 const requestData = {
                     ...selectedAnswers,
@@ -74,11 +73,7 @@ function WorkoutPlans() {
                     whr: latestFitness.whr || null,
                 };
 
-                console.log("Sending request to backend with:", requestData);
-
                 const response = await axios.post("http://localhost:5000/recommendations", requestData);
-
-                console.log("Received response:", response.data);
                 setRecommendedExercises(response.data.exercises);
             } catch (error) {
                 console.error("Error fetching workout plan:", error);
@@ -87,6 +82,18 @@ function WorkoutPlans() {
                 setLoading(false);
             }
         }
+    };
+
+    const handleBackClick = () => {
+        if (currentQuestionIndex > 0) {
+            setCurrentQuestionIndex(currentQuestionIndex - 1);
+        }
+    };
+
+    const handleGenerateNew = () => {
+        setRecommendedExercises(null);
+        setCurrentQuestionIndex(0);
+        setSelectedAnswers({});
     };
 
     return (
@@ -101,16 +108,21 @@ function WorkoutPlans() {
                     <ul>
                         {recommendedExercises.map((exercise, index) => (
                             <li key={index}>
-                                <strong>{exercise}</strong>  {/* Displaying exercise name */}
+                                <strong>{exercise}</strong>
                             </li>
                         ))}
                     </ul>
-                    <button onClick={() => setRecommendedExercises(null)}>
+                    <button onClick={handleGenerateNew}>
                         Generate New Plan
                     </button>
                 </div>
             ) : (
                 <div className="question-container">
+                    {currentQuestionIndex > 0 && (
+                        <button className="back-button" onClick={handleBackClick}>
+                            <FaArrowLeft /> Back
+                        </button>
+                    )}
                     <h3>{questions[currentQuestionIndex].question}</h3>
                     <ul>
                         {questions[currentQuestionIndex].options.map((option) => (

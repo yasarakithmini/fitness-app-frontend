@@ -18,10 +18,9 @@ ChartJS.register(
 function Dash() {
     const userId = localStorage.getItem('id');
     const [fitnessData, setFitnessData] = useState(null);
-    const [meetings, setMeetings] = useState([]); // Accepted meetings
+    const [meetings, setMeetings] = useState([]);
     const [error, setError] = useState('');
 
-    // Fetch Fitness Data
     useEffect(() => {
         const fetchFitnessData = async () => {
             try {
@@ -33,13 +32,12 @@ function Dash() {
                 setFitnessData(data);
             } catch (error) {
                 console.error('Error fetching fitness data:', error);
-                setError('Error fetching fitness data from the server');
+
             }
         };
         fetchFitnessData();
     }, [userId]);
 
-    // Fetch Accepted Meetings
     useEffect(() => {
         const fetchMeetings = async () => {
             try {
@@ -60,7 +58,7 @@ function Dash() {
                 {error && <p className="error-message">{error}</p>}
 
                 {/* Fitness Data Section */}
-                {fitnessData ? (
+                {fitnessData && fitnessData.length > 0 ? (
                     <div className="fitness-data">
                         <h3>Recent Fitness Records</h3>
 
@@ -107,7 +105,7 @@ function Dash() {
                         </div>
                     </div>
                 ) : (
-                    <p>Loading fitness data...</p>
+                    <p>No fitness records available. Please add some records to see your progress here.</p>
                 )}
 
                 {/* Accepted Meetings Section */}
