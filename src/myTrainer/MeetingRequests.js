@@ -38,7 +38,7 @@ function MeetingRequests() {
         <div className="dashboard">
             <TrainerSidebar />
             <div className="main-content">
-                <h1>Meeting Requests</h1>
+                <h2>Meeting Requests</h2>
                 <div className="meetings-container">
                     {loading ? (
                         <p>Loading requests...</p>

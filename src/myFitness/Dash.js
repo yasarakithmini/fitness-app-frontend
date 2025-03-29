@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Sidebar from './Sidebar';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import axios from 'axios';
@@ -17,6 +16,8 @@ ChartJS.register(
 
 function Dash() {
     const userId = localStorage.getItem('id');
+    const firstName = localStorage.getItem('first_name');
+    const lastName = localStorage.getItem('last_name');
     const [fitnessData, setFitnessData] = useState(null);
     const [meetings, setMeetings] = useState([]);
     const [error, setError] = useState('');
@@ -53,8 +54,10 @@ function Dash() {
 
     return (
         <div className="dashboard">
-            <Sidebar />
+            {/*<Sidebar />*/}
             <div className="main-content">
+                {firstName && <h2 className="greeting">Hello, {firstName} 👋</h2>}
+
                 {error && <p className="error-message">{error}</p>}
 
                 {/* Fitness Data Section */}
@@ -66,15 +69,15 @@ function Dash() {
                         <div className="fitness-records-row">
                             <div className="record">
                                 <h4>Most Recent Record</h4>
-                                <p><strong>BMI:</strong> {fitnessData[0]?.bmi || 'N/A'}</p>
-                                <p><strong>Waist-to-Hip Ratio:</strong> {fitnessData[0]?.whr || 'N/A'}</p>
-                                <p><strong>Date:</strong> {fitnessData[0]?.record_date || 'N/A'}</p>
+                                <p><strong>BMI -</strong> {fitnessData[0]?.bmi || 'N/A'}</p>
+                                <p><strong>Waist-to-Hip Ratio -</strong> {fitnessData[0]?.whr || 'N/A'}</p>
+                                <p><strong>Date -</strong> {fitnessData[0]?.record_date || 'N/A'}</p>
                             </div>
                             <div className="record">
                                 <h4>Previous Record</h4>
-                                <p><strong>BMI:</strong> {fitnessData[1]?.bmi || 'N/A'}</p>
-                                <p><strong>Waist-to-Hip Ratio:</strong> {fitnessData[1]?.whr || 'N/A'}</p>
-                                <p><strong>Date:</strong> {fitnessData[1]?.record_date || 'N/A'}</p>
+                                <p><strong>BMI -</strong> {fitnessData[1]?.bmi || 'N/A'}</p>
+                                <p><strong>Waist-to-Hip Ratio -</strong> {fitnessData[1]?.whr || 'N/A'}</p>
+                                <p><strong>Date -</strong> {fitnessData[1]?.record_date || 'N/A'}</p>
                             </div>
                         </div>
 

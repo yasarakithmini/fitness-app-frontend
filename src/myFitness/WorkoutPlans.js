@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./WorkoutPlans.css";
-import Sidebar from "./Sidebar";
 import { FaArrowLeft } from "react-icons/fa"; // Back icon
 
 function WorkoutPlans() {
@@ -98,7 +97,7 @@ function WorkoutPlans() {
 
     return (
         <div className="workout-plans">
-            <Sidebar />
+            {/*<Sidebar />*/}
             {!recommendedExercises && <h2>Workout Plans Questionnaire</h2>}
             {loading ? (
                 <p>Loading your personalized workout plan...</p>

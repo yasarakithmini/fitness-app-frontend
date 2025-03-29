@@ -70,6 +70,7 @@ function FitnessMetrics() {
     return (
         <Box sx={{ mt: 15 }}> {/* This adds spacing below your navbar */}
             <Container>
+                <h2>Log Your Data Here!</h2>
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     {/* Height & Weight Container */}
                     <Box sx={{ padding: 2, backgroundColor: '#f0f0f0', borderRadius: 2, width: '100%', maxWidth: 600, marginBottom: 3 }}>

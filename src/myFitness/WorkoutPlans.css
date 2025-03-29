@@ -52,7 +52,7 @@ ul li input[type="radio"] {
 
 .workout-plans button {
     display: block;
-    width: 80px;
+    width: auto;
     padding: 10px;
     background-color: #525151; /* Changed to gray */
     color: rgb(255, 255, 255); /* Change text color to white for better contrast */

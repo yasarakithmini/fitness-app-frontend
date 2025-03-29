@@ -24,9 +24,13 @@ const Login = () => {
             if (response.data.message === 'User logged in successfully!') {
                 const userType = response.data.user_type;
                 const userId = response.data.id;
+                const firstName = response.data.first_name;
+                const lastName = response.data.last_name;
+
 
                 // Save both ID and user_type
-                login(userId, userType); // Updated to use the new login format
+
+                login(userId, userType,firstName, lastName);
 
                 console.log("Logged in as:", userType); // Optional log to confirm
 

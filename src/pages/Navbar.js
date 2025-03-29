@@ -1,5 +1,5 @@
 import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAuth } from '../components/AuthContext';
 import { FaUserCircle } from "react-icons/fa";
 import logo from '../images/fixfit_logo.png';
@@ -24,7 +24,6 @@ export default function Navbar() {
     setIsDrawerOpen(false);
     const userType = localStorage.getItem('user_type');
     console.log("👉 user_type from localStorage:", userType);
-
     if (userType === 'Trainer') {
       Navigate('/trainer-settings');
     } else {
@@ -32,16 +31,17 @@ export default function Navbar() {
     }
   };
 
-  // ESC key closes drawer
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape") {
-        setIsDrawerOpen(false);
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  const handleNameClick = () => {
+    setIsDrawerOpen(false);
+    const userType = localStorage.getItem('user_type');
+    if (userType === 'Trainer') {
+      Navigate('/trainer-dashboard');
+    } else {
+      Navigate('/dashboard');
+    }
+  };
+
+  const fullName = `${localStorage.getItem('first_name') || ''} ${localStorage.getItem('last_name') || ''}`.trim();
 
   return (
       <div className="navbar-wrapper">
@@ -75,10 +75,14 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        {/* Right-Side Drawer with click-outside-close */}
+        {/* Right-Side Drawer */}
         {isDrawerOpen && (
             <div className="profile-drawer" onClick={toggleDrawer}>
               <div className="drawer-content" onClick={(e) => e.stopPropagation()}>
+                {/* Full Name Display */}
+                <div className="drawer-user-name" onClick={handleNameClick}>
+                  {fullName}
+                </div>
                 <button onClick={handleSettings} className="drawer-button">Settings</button>
                 <button onClick={handleLogout} className="drawer-button">Logout</button>
               </div>

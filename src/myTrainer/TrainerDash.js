@@ -26,7 +26,7 @@ function TrainerDash() {
         <div className="dashboard">
             <TrainerSidebar />
             <div className="main-content">
-                <h1>Upcoming Meetings</h1>
+                <h2>Upcoming Meetings</h2>
                 <div className="meetings-container">
                     {loading ? (
                         <p>Loading meetings...</p>

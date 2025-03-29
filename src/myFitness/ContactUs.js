@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './ContactUs.css';
-import Sidebar from "./Sidebar";
+// import Sidebar from "./Sidebar";
 
 function ContactUs() {
     const [name, setName] = useState('');
@@ -32,7 +32,7 @@ function ContactUs() {
 
     return (
         <div className="contact-us">
-            <Sidebar/>
+            {/*<Sidebar/>*/}
             <div className="form-wrapper">
                 <h2>Contact Us</h2>
                 <form onSubmit={handleSubmit} className="contact-form">
