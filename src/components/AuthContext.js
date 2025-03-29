@@ -7,13 +7,15 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('id'));
 
-    const login = (userId) => {
+    const login = (userId, userType) => {
         localStorage.setItem('id', userId);
+        localStorage.setItem('user_type', userType);
         setIsLoggedIn(true);
     };
 
     const logout = () => {
         localStorage.removeItem('id');
+        localStorage.removeItem('user_type');
         setIsLoggedIn(false);
     };
 

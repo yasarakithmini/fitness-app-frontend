@@ -129,34 +129,42 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 250px;
-    height: 100vh;
-    background-color: white;
-    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
-    z-index: 1200;
+    bottom: 0;
+    left: 0; /* Covers the whole screen */
+    background: rgba(0, 0, 0, 0.3);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    z-index: 1200;
     transition: transform 0.3s ease-in-out;
+
 }
 
 .drawer-content {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 250px;
+    height: 100%;
+    background: #fff;
+    padding: 20px;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+
 }
 
 .drawer-button {
     background-color: #072F7C;
     color: white;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
     border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s;
-    font-size: 16px;
+    border-radius: 6px;
+    font-weight: bold;
 }
 
 .drawer-button:hover {
     background-color: #0b3c99;
 }
+

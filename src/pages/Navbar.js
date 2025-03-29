@@ -1,5 +1,5 @@
 import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from '../components/AuthContext';
 import { FaUserCircle } from "react-icons/fa";
 import logo from '../images/fixfit_logo.png';
@@ -22,8 +22,26 @@ export default function Navbar() {
 
   const handleSettings = () => {
     setIsDrawerOpen(false);
-    Navigate('/profile');
+    const userType = localStorage.getItem('user_type');
+    console.log("👉 user_type from localStorage:", userType);
+
+    if (userType === 'Trainer') {
+      Navigate('/trainer-settings');
+    } else {
+      Navigate('/profile');
+    }
   };
+
+  // ESC key closes drawer
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setIsDrawerOpen(false);
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
       <div className="navbar-wrapper">
@@ -43,14 +61,9 @@ export default function Navbar() {
             <CustomLink to="/about">About</CustomLink>
 
             {isLoggedIn ? (
-                <>
-                  <button
-                      className="user-icon-btn"
-                      onClick={toggleDrawer}
-                  >
-                    <FaUserCircle size={28} />
-                  </button>
-                </>
+                <button className="user-icon-btn" onClick={toggleDrawer}>
+                  <FaUserCircle size={28} />
+                </button>
             ) : (
                 <button
                     className="navbar-button-1"
@@ -62,7 +75,7 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        {/* Right-Side Drawer */}
+        {/* Right-Side Drawer with click-outside-close */}
         {isDrawerOpen && (
             <div className="profile-drawer" onClick={toggleDrawer}>
               <div className="drawer-content" onClick={(e) => e.stopPropagation()}>

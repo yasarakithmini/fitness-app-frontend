@@ -18,6 +18,8 @@ import Sidebar from "./myFitness/Sidebar";
 import ProtectedRoute from './components/ProtectedRoute'; // Import ProtectedRoute
 import { AuthProvider } from './components/AuthContext';
 import ActivityLog from "./myFitness/FitnessMetrics";
+import TrainerSettings from "./myTrainer/TrainerSettings";
+
 
 function App() {
     const location = useLocation();
@@ -40,11 +42,13 @@ function App() {
                 <Route path="/trainer-dashboard" element={<ProtectedRoute element={<TrainerDashboard />} />} />
                 <Route path="/meeting-requests" element={<ProtectedRoute element={<MeetingRequests />} />} />
                 <Route path="/profile" element={<ProtectedRoute element={<Settings />} />} />
+                <Route path="/trainer-settings" element={<ProtectedRoute element={<TrainerSettings />} />} />
+
 
 
             </Routes>
             {(location.pathname === "/" || location.pathname === "/about" || location.pathname === "/services" || location.pathname === "/signup" || location.pathname === "/login") && <Footer />}
-            {(location.pathname !== "/" && location.pathname !== "/about" && location.pathname !== "/services" && location.pathname !== "/signup" && location.pathname !== "/login" && location.pathname !== "/trainer-dashboard" && location.pathname !== "/meeting-requests") && <Sidebar />}
+            {(location.pathname !== "/" && location.pathname !== "/about" && location.pathname !== "/services" && location.pathname !== "/signup" && location.pathname !== "/login" && location.pathname !== "/trainer-dashboard" && location.pathname !== "/meeting-requests" && location.pathname !== "/trainer-settings") && <Sidebar />}
         </div>
     );
 }

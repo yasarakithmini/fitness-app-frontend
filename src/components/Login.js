@@ -25,12 +25,14 @@ const Login = () => {
                 const userType = response.data.user_type;
                 const userId = response.data.id;
 
-                // Use login function from context
-                login(userId);
+                // Save both ID and user_type
+                login(userId, userType); // Updated to use the new login format
+
+                console.log("Logged in as:", userType); // Optional log to confirm
 
                 if (userType === 'Trainer') {
                     navigate('/trainer-dashboard');
-                } else if (userType === 'User') {
+                } else {
                     navigate('/dashboard');
                 }
             }
@@ -42,6 +44,7 @@ const Login = () => {
             }
         }
     };
+
 
     return (
         <>

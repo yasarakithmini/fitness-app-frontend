@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Settings.css';
-import UserSidebar from '../myFitness/Sidebar';
+import './TrainerSettings.css';
+import TrainerSidebar from '../myTrainer/TrainerSidebar';
 
-function UserSettings() {
+function TrainerSettings() {
     const userId = localStorage.getItem('id');
 
     const [formData, setFormData] = useState({
@@ -71,7 +71,7 @@ function UserSettings() {
 
     return (
         <div className="settings-page">
-            <UserSidebar />
+            <TrainerSidebar />
 
             <div className="settings-container">
                 <h2>Account Settings</h2>
@@ -144,4 +144,4 @@ function UserSettings() {
     );
 }
 
-export default UserSettings;
+export default TrainerSettings;
