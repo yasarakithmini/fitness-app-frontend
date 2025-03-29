@@ -68,74 +68,76 @@ function FitnessMetrics() {
     };
 
     return (
-        <Container>
-            <Box sx={{ marginTop: 5, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                {/* Height & Weight Container */}
-                <Box sx={{ padding: 2, backgroundColor: '#f0f0f0', borderRadius: 2, width: '100%', maxWidth: 600, marginBottom: 3 }}>
-                    <TextField
-                        label="Age"
-                        value={age}
-                        onChange={(e) => setAge(e.target.value)}
-                        fullWidth
-                        margin="normal"
-                    />
-                    <TextField
-                        label="Gender"
-                        value={gender}
-                        onChange={(e) => setGender(e.target.value)}
-                        fullWidth
-                        margin="normal"
-                    />
-                    <TextField
-                        label="Height (cm)"
-                        value={height}
-                        onChange={handleHeightChange}
-                        fullWidth
-                        margin="normal"
-                    />
-                    <TextField
-                        label="Weight (kg)"
-                        value={weight}
-                        onChange={handleWeightChange}
-                        fullWidth
-                        margin="normal"
-                    />
-                    <Box sx={{ marginTop: 2 }}>
-                        <strong>BMI: {bmi}</strong>
+        <Box sx={{ mt: 15 }}> {/* This adds spacing below your navbar */}
+            <Container>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    {/* Height & Weight Container */}
+                    <Box sx={{ padding: 2, backgroundColor: '#f0f0f0', borderRadius: 2, width: '100%', maxWidth: 600, marginBottom: 3 }}>
+                        <TextField
+                            label="Age"
+                            value={age}
+                            onChange={(e) => setAge(e.target.value)}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Gender"
+                            value={gender}
+                            onChange={(e) => setGender(e.target.value)}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Height (cm)"
+                            value={height}
+                            onChange={handleHeightChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Weight (kg)"
+                            value={weight}
+                            onChange={handleWeightChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <Box sx={{ marginTop: 2 }}>
+                            <strong>BMI: {bmi}</strong>
+                        </Box>
+                    </Box>
+
+                    {/* Waist & Hip Container */}
+                    <Box sx={{ padding: 2, backgroundColor: '#f0f0f0', borderRadius: 2, width: '100%', maxWidth: 600 }}>
+                        <TextField
+                            label="Waist (cm)"
+                            value={waist}
+                            onChange={handleWhrChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Hip (cm)"
+                            value={hip}
+                            onChange={handleHipChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <Box sx={{ marginTop: 2 }}>
+                            <strong>Waist-to-Hip Ratio: {whr}</strong>
+                        </Box>
+                    </Box>
+
+                    {/* Save Button */}
+                    <Box sx={{ marginTop: 3 }}>
+                        <Button onClick={saveRecord} variant="contained" color="primary">
+                            Save Record
+                        </Button>
                     </Box>
                 </Box>
-
-                {/* Waist & Hip Container */}
-                <Box sx={{ padding: 2, backgroundColor: '#f0f0f0', borderRadius: 2, width: '100%', maxWidth: 600 }}>
-                    <TextField
-                        label="Waist (cm)"
-                        value={waist}
-                        onChange={handleWhrChange}
-                        fullWidth
-                        margin="normal"
-                    />
-                    <TextField
-                        label="Hip (cm)"
-                        value={hip}
-                        onChange={handleHipChange}
-                        fullWidth
-                        margin="normal"
-                    />
-                    <Box sx={{ marginTop: 2 }}>
-                        <strong>Waist-to-Hip Ratio: {whr}</strong>
-                    </Box>
-                </Box>
-
-                {/* Save Button */}
-                <Box sx={{ marginTop: 3 }}>
-                    <Button onClick={saveRecord} variant="contained" color="primary">
-                        Save Record
-                    </Button>
-                </Box>
-            </Box>
-        </Container>
-
+            </Container>
+        </Box>
     );
+
 }
 
 export default FitnessMetrics;

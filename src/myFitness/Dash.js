@@ -32,7 +32,6 @@ function Dash() {
                 setFitnessData(data);
             } catch (error) {
                 console.error('Error fetching fitness data:', error);
-
             }
         };
         fetchFitnessData();
@@ -43,6 +42,7 @@ function Dash() {
             try {
                 console.log(`Fetching accepted meetings from: /api/user-accepted-meetings/${userId}`);
                 const response = await axios.get(`http://localhost:5000/api/user-accepted-meetings/${userId}`);
+                console.log("Received meetings data:", response.data);
                 setMeetings(response.data.data || []);
             } catch (error) {
                 console.error('Error fetching meetings:', error);
@@ -115,9 +115,16 @@ function Dash() {
                         <ul className="meeting-list">
                             {meetings.map(meeting => (
                                 <li key={meeting.id} className="meeting-item">
-                                    <p><strong>Date:</strong> {new Date(meeting.date_time).toLocaleString()}</p>
-                                    <p><strong>Trainer ID:</strong> {meeting.trainer_id}</p>
-                                    <p><strong>Status:</strong> <span className="status accepted">{meeting.status}</span></p>
+                                    <p><strong>Date -</strong> {new Date(meeting.date_time).toLocaleString()}</p>
+                                    <p><strong>Trainer ID -</strong> {meeting.trainer_id}</p>
+                                    <p><strong>Status -</strong> <span className="status accepted">{meeting.status}</span></p>
+                                    <div>
+                                            <p><strong>Link -</strong> {meeting.meeting_link}</p>
+                                            <a href={meeting.meeting_link} target="_blank" rel="noopener noreferrer">
+                                                <button>Join Meeting</button>
+                                            </a>
+                                    </div>
+
                                 </li>
                             ))}
                         </ul>

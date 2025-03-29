@@ -36,12 +36,12 @@
 /* Button container to center the save button */
 
 .fitness-container {
-    padding-top: 140px;
+    padding-top: 200px;
     display: flex;
     flex-direction: column; /* Stack containers vertically */
     align-items: center; /* Center both containers */
     height: auto; /* Remove 100vh to prevent forcing full screen */
-    justify-content: flex-start; /* Align from top */
+    /*justify-content: flex-start; !* Align from top *!*/
 }
 
 .fitness-box {

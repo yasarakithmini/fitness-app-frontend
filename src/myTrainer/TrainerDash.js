@@ -34,9 +34,15 @@ function TrainerDash() {
                         <ul>
                             {meetings.map(meeting => (
                                 <li key={meeting.id}>
-                                    <p><strong>Date:</strong> {new Date(meeting.date_time).toLocaleString()}</p>
-                                    <p><strong>User ID:</strong> {meeting.user_id}</p>
-                                    <p><strong>Status:</strong> {meeting.status}</p>
+                                    <p><strong>Date -</strong> {new Date(meeting.date_time).toLocaleString()}</p>
+                                    <p><strong>User ID -</strong> {meeting.user_id}</p>
+                                    <p><strong>Status -</strong> {meeting.status}</p>
+                                    <div>
+                                        <p><strong>Link -</strong> {meeting.meeting_link}</p>
+                                        <a href={meeting.meeting_link} target="_blank" rel="noopener noreferrer">
+                                            <button>Join Meeting</button>
+                                        </a>
+                                    </div>
                                 </li>
                             ))}
                         </ul>

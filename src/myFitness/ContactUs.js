@@ -1,7 +1,7 @@
-// src/ContactUs.js
+// Frontend: src/ContactUs.js
 import React, { useState } from 'react';
 import axios from 'axios';
-import './ContactUs.css'; // Optional: Create this CSS file for styling
+import './ContactUs.css';
 import Sidebar from "./Sidebar";
 
 function ContactUs() {
@@ -33,40 +33,22 @@ function ContactUs() {
     return (
         <div className="contact-us">
             <Sidebar/>
-            <h2>Contact Us</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="name">Name:</label>
-                    <input
-                        type="text"
-                        id="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="message">Message:</label>
-                    <textarea
-                        id="message"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        required
-                    ></textarea>
-                </div>
-                <button type="submit">Send Message</button>
-            </form>
-            {status && <p>{status}</p>}
+            <div className="form-wrapper">
+                <h2>Contact Us</h2>
+                <form onSubmit={handleSubmit} className="contact-form">
+                    <label>Name:</label>
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+
+                    <label>Email:</label>
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+
+                    <label>Message:</label>
+                    <textarea value={message} onChange={(e) => setMessage(e.target.value)} required />
+
+                    <button type="submit">Send Message</button>
+                </form>
+                {status && <p className="status-message">{status}</p>}
+            </div>
         </div>
     );
 }
