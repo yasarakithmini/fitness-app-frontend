@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./WorkoutPlans.css";
-import { FaArrowLeft } from "react-icons/fa"; // Back icon
+import { FaArrowLeft } from "react-icons/fa";
 
 function WorkoutPlans() {
     const questions = [
         {
             id: "BodyPart",
             question: "Which body part do you want to focus on?",
-            options: ["Abductors", "Biceps", "Chest", "Forearms", "Abdominals", "Glutes", "Hamstrings", "Lats", "Lower Back", "Middle Back", "Traps", "Neck", "Quadriceps", "Shoulders", "Triceps"],
+            options: ["Biceps", "Chest", "Abdominals", "Glutes", "Hamstrings", "Lats", "Quadriceps", "Shoulders", "Triceps"],
         },
         {
             id: "Type",
@@ -25,13 +25,29 @@ function WorkoutPlans() {
             question: "What type of equipment do you prefer?",
             options: ["Body Only", "Dumbbell", "Barbell", "E-Z Curl Bar", "Bands", "Exercise Ball", "Cable", "Machine", "Kettlebells", "Foam Roll", "Medicine Ball", "None", "Other"],
         },
+        {
+            id: "Environment",
+            question: "Where will you be doing your workouts?",
+            options: ["Home", "Gym", "Outdoors"],
+        },
+        {
+            id: "Goal",
+            question: "What is your primary fitness goal?",
+            options: ["Lose Weight", "Build Muscle", "Improve Endurance", "Increase Flexibility", "Rehabilitation"],
+        },
+        {
+            id: "IncludeWarmupCooldown",
+            question: "Do you want to include warm-up and cool-down exercises?",
+            options: ["Yes", "No"],
+        }
     ];
 
+    const userId = localStorage.getItem('id');
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState({});
     const [recommendedExercises, setRecommendedExercises] = useState(null);
     const [loading, setLoading] = useState(false);
-    const userId = localStorage.getItem('id');
+    const [loadingPastPlan, setLoadingPastPlan] = useState(true);
 
     useEffect(() => {
         const fetchPastPlan = async () => {
@@ -42,6 +58,8 @@ function WorkoutPlans() {
                 }
             } catch (error) {
                 console.error("Error fetching past workout plan:", error);
+            } finally {
+                setLoadingPastPlan(false);
             }
         };
 
@@ -49,19 +67,18 @@ function WorkoutPlans() {
     }, [userId]);
 
     const handleOptionChange = (questionId, option) => {
-        setSelectedAnswers({
-            ...selectedAnswers,
+        setSelectedAnswers(prev => ({
+            ...prev,
             [questionId]: option,
-        });
+        }));
     };
 
     const handleNextClick = async () => {
         if (currentQuestionIndex < questions.length - 1) {
-            setCurrentQuestionIndex(currentQuestionIndex + 1);
+            setCurrentQuestionIndex(prev => prev + 1);
         } else {
             try {
                 setLoading(true);
-
                 const fitnessResponse = await axios.get(`http://localhost:5000/fitness/latest/${userId}`);
                 const latestFitness = fitnessResponse.data[0] || {};
 
@@ -85,7 +102,7 @@ function WorkoutPlans() {
 
     const handleBackClick = () => {
         if (currentQuestionIndex > 0) {
-            setCurrentQuestionIndex(currentQuestionIndex - 1);
+            setCurrentQuestionIndex(prev => prev - 1);
         }
     };
 
@@ -95,25 +112,54 @@ function WorkoutPlans() {
         setSelectedAnswers({});
     };
 
+    if (loadingPastPlan) {
+        return <div className="workout-plans"><p>Loading...</p></div>;
+    }
+
     return (
         <div className="workout-plans">
-            {/*<Sidebar />*/}
             {!recommendedExercises && <h2>Workout Plans Questionnaire</h2>}
+
             {loading ? (
                 <p>Loading your personalized workout plan...</p>
             ) : recommendedExercises ? (
                 <div>
-                    <h3>Your Personalized Workout Plan:</h3>
-                    <ul>
-                        {recommendedExercises.map((exercise, index) => (
-                            <li key={index}>
-                                <strong>{exercise}</strong>
-                            </li>
-                        ))}
-                    </ul>
-                    <button onClick={handleGenerateNew}>
-                        Generate New Plan
-                    </button>
+                    <h3 className="plan-title">Your Personalized Workout Plan</h3>
+
+                    {recommendedExercises.warmup?.length > 0 && (
+                        <div>
+                            <h4 className="section-title">Warm-up Exercises</h4>
+                            <ul className="exercise-list">
+                                {recommendedExercises.warmup.map((exercise, index) => (
+                                    <li className="warmup" key={`warmup-${index}`}><strong>{exercise}</strong></li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+
+                    {recommendedExercises.main?.length > 0 && (
+                        <div>
+                            <h4 className="section-title">Main Exercises</h4>
+                            <ul className="exercise-list">
+                                {recommendedExercises.main.map((exercise, index) => (
+                                    <li className="main" key={`main-${index}`}><strong>{exercise}</strong></li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+
+                    {recommendedExercises.cooldown?.length > 0 && (
+                        <div>
+                            <h4 className="section-title">Cool-down Exercises</h4>
+                            <ul className="exercise-list">
+                                {recommendedExercises.cooldown.map((exercise, index) => (
+                                    <li className="cooldown" key={`cooldown-${index}`}><strong>{exercise}</strong></li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+
+                    <button onClick={handleGenerateNew}>Generate New Plan</button>
                 </div>
             ) : (
                 <div className="question-container">

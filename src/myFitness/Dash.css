@@ -95,3 +95,8 @@
     color: green;
     font-weight: bold;
 }
+.greeting {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
