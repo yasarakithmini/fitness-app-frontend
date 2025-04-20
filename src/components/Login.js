@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Login.css';
 import Navbar from "../pages/Navbar";
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../components/AuthContext'; // Adjust path as necessary
+import { useAuth } from '../components/AuthContext';
 
 const Login = () => {
     const [email, setEmail] = useState('');
