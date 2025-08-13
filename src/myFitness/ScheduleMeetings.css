@@ -1,0 +1,125 @@
+/* Main container for the meetings section */
+.schedule-meetings {
+    padding: 30px;
+    margin-top: 100px;
+    margin-left: 250px;
+    background-color: rgba(240, 244, 248, 0.55);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Trainers list container */
+.trainers-list {
+    margin-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Individual trainer container */
+.trainer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+    border: 1px solid #ddd;
+    width: 300px;
+    height: 220px; /* Fixed height to prevent shifting */
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Needed for proper calendar placement */
+}
+
+.trainer-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.trainer-item span {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Button styling */
+.trainer-item button {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    margin-top: auto; /* Push button to the bottom */
+}
+
+.trainer-item button:hover {
+    background-color: rgba(93, 93, 98, 0.83);
+}
+
+.trainer-item button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(217, 217, 217);
+}
+
+/* Calendar Styling */
+.trainer-calendar {
+    margin-top: 10px;
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 280px;
+    text-align: left;
+    animation: fadeIn 0.3s ease-in-out;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+/* Fade-in animation for calendar */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Loading & Error Message Styles */
+.loading,
+.error {
+    font-size: 18px;
+    color: #333;
+    margin-top: 50px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .schedule-meetings {
+        margin-left: 0;
+        padding: 40px;
+    }
+
+    .trainers-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .trainer-item {
+        width: 90%;
+        height: auto; /* Adjusts height for mobile */
+    }
+}

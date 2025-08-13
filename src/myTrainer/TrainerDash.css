@@ -1,0 +1,14 @@
+/* src/Dash.css */
+.dashboard {
+    display: flex; /* Flexbox layout for sidebar and content */
+}
+
+.main-content {
+    margin-top: 100px;
+    margin-left: 250px; /* Offset the main content to the right of the sidebar */
+    padding: 20px; /* Add padding to the main content */
+    flex: 1; /* Allow the content to take up remaining space */
+}
+.main-content{
+    color: #FFFFFF;
+}

@@ -1,0 +1,76 @@
+
+
+
+/* Styling for the 'Age and Gender' container */
+.age-gender-container {
+    width: 100%;
+    margin-bottom: 30px; /* Adds spacing between containers */
+
+}
+
+/* Styling for the 'Height, Weight and BMI Calculation' container */
+.height-weight-container {
+    width: 100%;
+    margin-bottom: 30px;
+    /* Adds spacing between containers */
+}
+
+/* Styling for the 'Waist, Hip and Waist-to-Hip Ratio' container */
+.waist-hip-container {
+    width: 100%;
+}
+
+/* Spacing and alignment for text fields */
+.fitness-box .MuiTextField-root {
+    margin-bottom: 15px;
+}
+
+/* Styling the BMI and WHR results display */
+.result-text {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Button container to center the save button */
+
+.fitness-container {
+    padding-top: 200px;
+    display: flex;
+    flex-direction: column; /* Stack containers vertically */
+    align-items: center; /* Center both containers */
+    height: auto; /* Remove 100vh to prevent forcing full screen */
+    /*justify-content: flex-start; !* Align from top *!*/
+}
+
+.fitness-box {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px; /* Limit the width */
+    margin-bottom: 20px; /* Add spacing between the two containers */
+
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Center the button */
+    margin-top: 20px;
+}
+
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    /* Stack the fields on small screens */
+    .fitness-container {
+        margin-top: 60px;
+    }
+
+    .fitness-box {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}

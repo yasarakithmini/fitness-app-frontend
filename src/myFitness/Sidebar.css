@@ -1,0 +1,59 @@
+/* src/Sidebar.css */
+.sidebar {
+    width: 250px;
+    height: calc(100vh - 60px); /* Adjust for navbar height */
+    background-color: rgba(245, 245, 245, 0.91);
+    color: #000000;
+    position: fixed;
+    top: 80px; /* Start below the navbar */
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    z-index: 1000; /* Lower than navbar */
+    text-decoration: none;
+}
+
+.sidebar ul {
+    list-style-type: none; /* Remove default list styling */
+    padding: 10px;
+
+}
+
+.sidebar li {
+    margin: 10px 0;
+    font-size: 18px; /* Font size */
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    background-color: rgba(245, 245, 245, 0.91);
+    padding: 10px;
+    border-radius: 15px;
+
+}
+
+.sidebar li:hover {
+    background-color: #D2D2D2; /* Highlight color on hover */
+    padding: 10px;
+    border-radius: 15px;
+    text-decoration: none;
+
+}
+.sidebar a {
+    text-decoration: none; /* Remove underline */
+    color: inherit;
+    font-weight: bold;
+    display: block;
+    /*padding: 10px;*/
+}
+
+.sidebar a:hover {
+    color: #0d9efe;
+    text-decoration: none;
+}
+.sidebar li.active {
+    color: #0d9efe; /* Highlight active tab */
+    background-color: #D2D2D2;
+
+
+}

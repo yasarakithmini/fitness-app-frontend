@@ -1,0 +1,102 @@
+.main-content {
+    margin-top: 100px;
+    margin-left: 250px;
+    padding: 30px;
+    flex: 1;
+}
+
+/* Error message style */
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Container for fitness data */
+.fitness-data {
+    margin-top: 70px;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: rgba(56, 49, 49, 0.23);;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Display fitness records in a row */
+.fitness-records-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adds space between records */
+    margin-bottom: 20px;
+}
+
+/* Style for individual records */
+.fitness-records-row .record {
+    flex: 1;
+    padding: 20px;
+    background: rgba(96, 92, 92, 0.38);
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.record:hover {
+    transform: translateY(-3px);
+}
+
+.record h4 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Responsive: Stack records on small screens */
+@media (max-width: 768px) {
+    .fitness-records-row {
+        flex-direction: column;
+    }
+}
+
+/* Chart container */
+.fitness-chart {
+    background: rgba(217, 217, 217, 0.83);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    color: #0b0d0d;
+}
+
+.fitness-chart h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Meetings Container */
+.meetings-container {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: rgba(217, 217, 217, 0.2);
+    border-radius: 8px;
+}
+
+/* Meeting list */
+.meeting-item {
+    padding: 15px;
+    margin: 10px 0;
+    background-color: rgba(217, 217, 217, 0.1);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status.accepted {
+    color: green;
+    font-weight: bold;
+}
+.greeting {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}

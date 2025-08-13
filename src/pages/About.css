@@ -1,0 +1,40 @@
+.about {
+  padding: 20px;
+}
+
+.box {
+  width: 97%; /* Width of the box */
+  height: auto; /* Adjust height to content */
+  background-color: rgba(217, 217, 217, 0.2);
+  margin: 60px 10px 20px 30px; /* Space above and below the box */
+  padding: 20px; /* Padding inside the box */
+  color: white; /* Default text color inside the box */
+  text-align: left; /* Align text to the left */
+  padding-bottom: 10px;
+
+
+}
+
+.section-title {
+  color: #000000; /* Green color for section titles */
+  font-size: 20px; /* Font size for section titles */
+  margin-top: 0; /* Remove default margin-top for consistency */
+  font-family: 'Roboto', sans-serif; /* Set font to Roboto */
+  font-weight: bold; /* Bold text */
+  line-height: 1.9;    /* Adjust line spacing (1.6 is an example, you can modify it as needed) */
+}
+
+.description {
+  font-size: 16px; /* Font size for description text */
+  margin: 10px 0; /* Space above and below paragraphs */
+  font-family: 'Roboto', sans-serif; /* Set font to Roboto */
+  line-height: 1.9;    /* Adjust line spacing (1.6 is an example, you can modify it as needed) */
+}
+
+.thank-you {
+  font-weight: bold; /* Bold text */
+  color: white; /* White color for thank you text */
+  font-size: 20px; /* Font size for thank you text */
+  font-family: 'Roboto', sans-serif; /* Set font to Roboto */
+  line-height: 1.9;    /* Adjust line spacing (1.6 is an example, you can modify it as needed) */
+}

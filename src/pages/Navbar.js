@@ -1,41 +1,94 @@
 import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from '../components/AuthContext';
+import { FaUserCircle } from "react-icons/fa";
+import logo from '../images/fixfit_logo.png';
+import './Navbar.css';
 
 export default function Navbar() {
+  const { isLoggedIn, logout } = useAuth();
   const Navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  function toggleMenu() {
-    setIsOpen(!isOpen);
-  }
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
+
+  const handleLogout = () => {
+    setIsDrawerOpen(false);
+    logout();
+    Navigate('/login');
+  };
+
+  const handleSettings = () => {
+    setIsDrawerOpen(false);
+    const userType = localStorage.getItem('user_type');
+    console.log("👉 user_type from localStorage:", userType);
+    if (userType === 'Trainer') {
+      Navigate('/trainer-settings');
+    } else {
+      Navigate('/profile');
+    }
+  };
+
+  const handleNameClick = () => {
+    setIsDrawerOpen(false);
+    const userType = localStorage.getItem('user_type');
+    if (userType === 'Trainer') {
+      Navigate('/trainer-dashboard');
+    } else {
+      Navigate('/dashboard');
+    }
+  };
+
+  const fullName = `${localStorage.getItem('first_name') || ''} ${localStorage.getItem('last_name') || ''}`.trim();
 
   return (
-    <div className="navbar-wrapper">
-      <nav className="nav-1">
-        <Link to="/" className="site-title">
-          <p class="logo">
-            <span>Fix</span>Fit
-          </p>
-        </Link>
-        <button className="navbar-toggle" onClick={toggleMenu}>
-          <span className="navbar-toggle-icon">&#9776;</span>
-        </button>
-        <ul className={`navbar-menu ${isOpen ? "navbar-menu-open" : ""}`}>
-          <CustomLink to="/">Home</CustomLink>
-          <CustomLink to="/about">About Us</CustomLink>
-          <CustomLink to="/help">Services</CustomLink>
-          <button
-            className="navbar-button-1"
-            onClick={() => Navigate("/signin")}
+      <div className="navbar-wrapper">
+        <nav className="nav-1">
+          <Link to="/" className="site-title">
+            <img src={logo} alt="FixFit Logo" className="logo-image" />
+          </Link>
+          <button className="navbar-toggle" onClick={toggleMenu}>
+            <span className="navbar-toggle-icon">&#9776;</span>
+          </button>
+          <ul
+              className={`navbar-menu ${isOpen ? "navbar-menu-open" : ""}`}
+              style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
           >
-            SIGN IN{" "}
-          </button>
-          <button className="navbar-button-2" onClick={() => Navigate("/sign")}>
-            SIGN UP{" "}
-          </button>
-        </ul>
-      </nav>
-    </div>
+            <CustomLink to="/">Home</CustomLink>
+            <CustomLink to="/services">Services</CustomLink>
+            <CustomLink to="/about">About</CustomLink>
+
+            {isLoggedIn ? (
+                <button className="user-icon-btn" onClick={toggleDrawer}>
+                  <FaUserCircle size={28} />
+                </button>
+            ) : (
+                <button
+                    className="navbar-button-1"
+                    onClick={() => Navigate("/login")}
+                >
+                  Login
+                </button>
+            )}
+          </ul>
+        </nav>
+
+        {/* Right-Side Drawer */}
+        {isDrawerOpen && (
+            <div className="profile-drawer" onClick={toggleDrawer}>
+              <div className="drawer-content" onClick={(e) => e.stopPropagation()}>
+                {/* Full Name Display */}
+                <div className="drawer-user-name" onClick={handleNameClick}>
+                  {fullName}
+                </div>
+                <button onClick={handleSettings} className="drawer-button">Settings</button>
+                <button onClick={handleLogout} className="drawer-button">Logout</button>
+              </div>
+            </div>
+        )}
+      </div>
   );
 }
 
@@ -44,10 +97,10 @@ function CustomLink({ to, children, ...props }) {
   const isActive = useMatch({ path: resolvedPath.pathname, end: true });
 
   return (
-    <li className={isActive ? "active" : ""}>
-      <Link to={to} {...props}>
-        {children}
-      </Link>
-    </li>
+      <li className={isActive ? "active" : ""}>
+        <Link to={to} {...props}>
+          {children}
+        </Link>
+      </li>
   );
 }
